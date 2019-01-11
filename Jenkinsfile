@@ -6,24 +6,24 @@ pipeline {
       // Set buildname to App Version from previous step
       steps {
         // add inject nonprod and prod config from environment
-        sh '''
-          echo "HELLO"
+        powershell '''
+          write-host "HELLO"
         '''
       }
     }
     stage('nonprod-slack') {
       agent any
         steps {    
-          sh '''
-            echo "deployment succeeded"
+          powershell '''
+            write-host "deployment succeeded"
           '''   
           }
         } 
     stage('unstash-again'){
       agent any
         steps {
-          sh '''
-            echo "unstashing again"
+          powershell '''
+            write-host "unstashing again"
           '''
         }
     }
@@ -52,8 +52,8 @@ pipeline {
           script {
             env.APP_VERSION = currentBuild.displayName
           }
-          sh '''#!/bin/bash
-            echo "Prod deploy"
+          powershell '''
+            write-host "Prod deploy"
 
           '''
         }
